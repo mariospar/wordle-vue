@@ -1,7 +1,7 @@
 import path from "path";
-import { createServer } from "http";
 import express from "express";
 import sslRedirect from "heroku-ssl-redirect";
+import serveStatic from "serve-static";
 import helmet from "helmet";
 // import cors from "cors"
 import config from "../config";
@@ -9,11 +9,12 @@ import config from "../config";
 const app = express();
 
 const __dirname = path.resolve();
+console.log(path.join(__dirname, "dist"));
 
 // app.use(cors());
 app.use(helmet());
 // app.use(sslRedirect);
-app.use(express.static(path.join(__dirname + "../dist")));
+app.use(serveStatic(path.join(__dirname, "dist")));
 
 // app.get("/word", (req, res) => {
 // 	const options = {
@@ -38,11 +39,10 @@ app.use(express.static(path.join(__dirname + "../dist")));
 // 		});
 // });
 
-const server = createServer(app);
 
 // Start the server
-server.listen(config.port, () => {
+app.listen(config.port, () => {
 	console.log(`Server listening on port ${config.port}`);
 });
 
-export default server;
+export default app;

@@ -4,7 +4,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --host",
-		"start": "node --experimental-modules --es-module-specifier-resolution=node \"server/index\"",
+    "postinstall": "npm run build",
+		"start": "node --experimental-modules --es-module-specifier-resolution=node \"server/index.js\"",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
@@ -13,6 +14,7 @@
 		"cors": "^2.8.5",
 		"express": "^4.17.2",
 		"heroku-ssl-redirect": "^0.1.1",
+		"serve-static": "^1.14.2",
 		"vue": "^3.2.29",
 		"vuex": "^4.0.2"
 	},
@@ -20,7 +22,6 @@
 		"@vitejs/plugin-vue": "^2.1.0",
 		"dotenv": "^16.0.0",
 		"helmet": "^5.0.2",
-		"http": "^0.0.1-security",
 		"sass": "^1.49.7",
 		"vite": "^2.7.13",
 		"vite-plugin-pwa": "^0.11.13"
