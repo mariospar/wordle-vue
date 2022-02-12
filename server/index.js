@@ -1,19 +1,19 @@
 import path from "path";
 import express from "express";
-import sslRedirect from "heroku-ssl-redirect";
+import sslRedirectHeroku from "heroku-ssl-redirect";
 import serveStatic from "serve-static";
 import helmet from "helmet";
 // import cors from "cors"
 import config from "../config";
 
 const app = express();
-
+const sslRedirect = sslRedirectHeroku.default;
 const __dirname = path.resolve();
 console.log(path.join(__dirname, "dist"));
 
 // app.use(cors());
 app.use(helmet());
-// app.use(sslRedirect);
+app.use(sslRedirect(["production"]));
 app.use(serveStatic(path.join(__dirname, "dist")));
 
 // app.get("/word", (req, res) => {
